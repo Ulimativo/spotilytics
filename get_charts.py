@@ -10,6 +10,12 @@ from libs import basicHandler as bh
 
 #global variables
 CHART_PATH="chart_files/"
+p=Path(CHART_PATH)
+if p.exists() == False:
+    p.mkdir(parents=True, exist_ok=True)
+    print(f"Directory not found, thus created: {CHART_PATH}")
+
+
 
 '''
 File containing basic functions for webscraping, file generation, etc. of

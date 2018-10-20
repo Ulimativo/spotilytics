@@ -1,8 +1,8 @@
 #get_charts.py
-
 from bs4 import BeautifulSoup as bs
 import requests
 import click
+from pathlib import Path
 
 #local imports
 from libs import fileHandler as fh
@@ -64,4 +64,9 @@ def range(earliest, country):
     print("Script finished.")
 
 if __name__ =="__main__":
+    p=Path(CHART_PATH)
+    if p.exists() == False:
+        p.mkdir(parents=True, exist_ok=True)
+        print(f"Directory not found, thus created: {CHART_PATH}")
+
     main()
