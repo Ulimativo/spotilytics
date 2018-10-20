@@ -7,9 +7,9 @@ CHART_PATH="chart_files/"
 SPOTIFY_URL="https://spotifycharts.com/regional/at/daily/"
 
 
-def get_daily(date):
+def get_daily(date,url):
     """get data from spotifycharts.com with given date as beautiful soup object"""
-    url=SPOTIFY_URL+date
+    url=url+date
     page=requests.get(url)
     soup=bs(page.content,'html.parser')
     if soup_valid(soup) == False:
