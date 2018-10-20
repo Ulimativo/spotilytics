@@ -15,22 +15,25 @@ def get_daily(date):
     if soup_valid(soup) == False:
         print(f"ERROR: {date} - Soup is not valid. Please try another date.")
     else:
-        df=clean_table(soup)
+        table=soup.find(class_="chart-table")
+        df=clean_table(table)
         print(f"{date} - Soup eaten, Table clean. Returning Frame.")
         return df
 
 def soup_valid(soup):
     """check if date charts are valid/available"""
-    soup_check=soup.find(class_="not-found")
-    soup_check_error=soup.find(class_="chart-error")
-    if soup_check or soup_check_error is None:
-        return True
-    else:
+    table=soup.find(class_="chart-table")
+    #soup_check=soup.find(class_="not-found")
+    #soup_check_error=soup.find(class_="chart-error")
+    #if soup_check or soup_check_error is None:
+    if table is None:
         return False
+    else:
+        return True
 
-def clean_table(soup):
+def clean_table(table):
     """clean up the raw data from soup into a dataframe"""
-    table=soup.find(class_='chart-table')
+    #table=soup.find(class_='chart-table')
     td={}
     td[1]=table.find_all(class_='chart-table-track')
     td[2]=table.find_all(class_='chart-table-streams')
