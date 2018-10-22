@@ -5,9 +5,7 @@ safe locally as csv-files.
 
 ## Usage Examples
 
-####Command Line Version (get_charts_cli.py):
+#### Command Line Version (get_charts_cli.py):
 
-Get Top-200 for the USA from 2018-10-01 until yesterday:
-'''
-get_charts_cli.py range -c us 2018-10-01
-'''
+Get Top-200 for the US from 2018-10-01 until yesterday:
+'get_charts_cli.py range -c us 2018-10-01'
