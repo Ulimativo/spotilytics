@@ -1,4 +1,6 @@
 from pathlib import Path
+from os import listdir
+from os.path import isfile,join
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup as bs
@@ -79,3 +81,16 @@ def save_csv(df,date):
 def build_save(date):
     """build dataframe, then save is as csv in given path"""
     return "Frame built, file saved."
+
+"""
+Functions used in ask_basics_cli
+"""
+
+def build_frame(file):
+    df=pd.read_csv(CHART_PATH+file)
+    return df
+
+def load_frame(daterange):
+    for i in daterange:
+        print(i)
+    return
