@@ -2,25 +2,25 @@
 
 from bs4 import BeautifulSoup as bs
 import requests
+from pathlib import Path
 
 #local imports
 from libs import fileHandler as fh
 from libs import chartHandler as ch
 from libs import basicHandler as bh
 
-#global variables
-CHART_PATH="chart_files/"
-p=Path(CHART_PATH)
-if p.exists() == False:
-    p.mkdir(parents=True, exist_ok=True)
-    print(f"Directory not found, thus created: {CHART_PATH}")
-
-
-
 '''
 File containing basic functions for webscraping, file generation, etc. of
 data from the official spotifycharts.com Website for use in further analysis.
 '''
+
+
+#global variables
+CHART_PATH=Path.cwd() / "chart_files"
+if CHART_PATH.exists() == False:
+    CHART_PATH.mkdir(parents=True, exist_ok=True)
+    print(f"Directory not found, thus created: {CHART_PATH}")
+
 def daily(date,country):
     url=f"https://spotifycharts.com/regional/{country}/daily/"
     frame_charts=ch.get_daily(date, url)
@@ -28,15 +28,5 @@ def daily(date,country):
         print(f"ERROR: {date} - No dataframe was handled, no file created.")
     else:
         date=date+f"_{country}"
-        if (fh.check_file(CHART_PATH+date+".csv") == True):
-            overwrite=click.prompt(
-                "File exists. Do you want to overwrite? (y/n)", default='n'
-                )
-            if overwrite == 'y':
-                print("Overwriting file...")
-                ch.save_csv(frame_charts,date)
-            else:
-                print("No Action.")
-        else:
-            ch.save_csv(frame_charts, date)
+        ch.save_csv(frame_charts, date)
     return "Finished for {}".format(date)

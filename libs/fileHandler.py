@@ -10,8 +10,7 @@ contains basic file handling methods
 
 
 def check_file(file):
-    file=Path(file)
-    if file.is_file():
+    if file.exists():
         return True
     else:
         return False

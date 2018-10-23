@@ -5,7 +5,7 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup as bs
 
-CHART_PATH="chart_files/"
+#CHART_PATH="chart_files/"
 SPOTIFY_URL="https://spotifycharts.com/regional/at/daily/"
 
 
@@ -72,9 +72,8 @@ def clean_table(table):
     df.index.name="POS"
     return df
 
-def save_csv(df,date):
+def save_csv(df,filename):
     """Save dataframe to csv with given date as filename"""
-    filename=CHART_PATH+date+".csv"
     df.to_csv(filename)
     return "File generated: {}".format(filename)
 
