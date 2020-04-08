@@ -3,9 +3,10 @@ import click
 from libs import chartHandler as ch
 from libs import fileHandler as fh
 import pandas as pd
+from pathlib import Path
 
 #global variables
-CHART_PATH="chart_files/"
+CHART_PATH=Path.cwd() / 'chart_files'
 
 @click.group()
 def main():
